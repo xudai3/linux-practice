@@ -1,23 +1,13 @@
-CC = gcc
-SOURCES = $(wildcard *.c)
-OBJS = $(patsubst %.c, %.o, $(SOURCES))
-TARGETS = $(patsubst %.c, %, $(SOURCES))
-
-all: $(OBJS) $(TARGETS) clean
-$(OBJS):%.o:%.c
-	$(CC) -c $< -o $@
-
-$(TARGETS):%:$(OBJS)
-	$(CC) $< -o $@
+all: cp1 who1 who2
 
 clean:
-	@echo "auto cleaning..."
-	rm -rf *.o
+	rm -f cp1 who1 who2
 
-.PHONY: cleanO cleanA
-cleanO:
-	@echo "cleaning..."
-	rm -rf *.o
-cleanA:
-	@echo "cleaning all..."
-	rm -rf *.o $(TARGETS)
+cp1:cp1.c
+	cc -o cp1 cp1.c
+
+who1:who1.c
+	cc -o who1 who1.c
+
+who2:who2.c utmplib.c
+	cc -o who2 who2.c utmplib.c

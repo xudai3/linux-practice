@@ -7,7 +7,7 @@ all: $(OBJS) $(TARGETS) clean
 $(OBJS):%.o:%.c
 	$(CC) -c $< -o $@
 
-$(TARGETS):%:$(OBJS)
+$(TARGETS):%:%.o
 	$(CC) $< -o $@
 
 clean:
